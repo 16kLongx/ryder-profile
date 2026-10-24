@@ -753,12 +753,15 @@
             `).join('');
         }
 
-        fetch(`https://api.counterapi.dev/v1/westcoast_profile_${DISCORD_ID}/visits/up`)
+        // ZİYARETÇİ SAYACI (DÜZELTİLMİŞ KOD)
+        fetch('https://api.counterapi.dev/v1/ryder-profile-site/views/up')
             .then(res => res.json())
             .then(data => {
-                document.getElementById("visits").innerText = data.count || "1";
+                const countVal = data.count || data.up || 1;
+                document.getElementById("visits").innerText = countVal;
             })
-            .catch(() => {
+            .catch(err => {
+                console.error("Sayaç Hatası:", err);
                 document.getElementById("visits").innerText = "1";
             });
 
