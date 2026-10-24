@@ -595,7 +595,7 @@
         <!-- Ziyaretçi Sayacı -->
         <div class="footer">
             <div class="visitor-count">
-                <i class="fa-solid fa-eye"></i> <span id="visits">1337</span> Ziyaretçi
+                <i class="fa-solid fa-eye"></i> <span id="visits">1</span> Ziyaretçi
             </div>
         </div>
     </div>
@@ -753,10 +753,10 @@
             `).join('');
         }
 
-        // KESİN ÇALIŞAN GARANTİLİ YEREL SAYAÇ SİSTEMİ
+        // KESİN ÇALIŞAN GARANTİLİ YEREL SAYAÇ SİSTEMİ (1'DEN BAŞLAR)
         let visits = localStorage.getItem("ryder_site_visits");
         if (!visits) {
-            visits = 1450; // Başlangıç rakamı
+            visits = 1; 
         } else {
             visits = parseInt(visits) + 1;
         }
