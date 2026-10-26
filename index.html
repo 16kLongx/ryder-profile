@@ -340,4 +340,527 @@
         .user-info .activity {
             font-size: 12px;
             color: var(--text-muted);
-            margin-
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* YAN YANA LİNK BUTONLARI (STEAM & SPOTIFY) */
+        .links-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 11px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 12.5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .steam-btn {
+            background: linear-gradient(90deg, #171a21 0%, #1b2838 100%);
+            border: 1px solid rgba(102, 192, 244, 0.2);
+            color: #c6d4df;
+        }
+
+        .steam-btn:hover {
+            border-color: #66c0f4;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(102, 192, 244, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .spotify-profile-btn {
+            background: linear-gradient(90deg, #0f2b17 0%, #123d1f 100%);
+            border: 1px solid rgba(30, 215, 96, 0.3);
+            color: #1ed760;
+        }
+
+        .spotify-profile-btn:hover {
+            border-color: #1ed760;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(30, 215, 96, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Söz Kutusu */
+        .quote-box {
+            background: rgba(139, 0, 0, 0.15);
+            border-left: 3px solid var(--neon-red);
+            padding: 12px 14px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 16px;
+        }
+
+        .quote-text {
+            font-size: 12.5px;
+            font-style: italic;
+            color: #ddd;
+            line-height: 1.4;
+        }
+
+        /* Spotify Canlı Kartı & Equalizer */
+        .spotify-card {
+            background: rgba(30, 215, 96, 0.05);
+            border: 1px solid rgba(30, 215, 96, 0.18);
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 16px;
+        }
+
+        .spotify-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Equalizer Animasyonu */
+        .equalizer {
+            display: none;
+            align-items: flex-end;
+            gap: 3px;
+            height: 14px;
+        }
+
+        .equalizer.active {
+            display: flex;
+        }
+
+        .eq-bar {
+            width: 3px;
+            background: #1ed760;
+            border-radius: 2px;
+            animation: eq-bounce 1s infinite ease-in-out alternate;
+        }
+
+        .eq-bar:nth-child(1) { height: 60%; animation-delay: 0.1s; }
+        .eq-bar:nth-child(2) { height: 100%; animation-delay: 0.3s; }
+        .eq-bar:nth-child(3) { height: 40%; animation-delay: 0.2s; }
+
+        @keyframes eq-bounce {
+            0% { height: 20%; }
+            100% { height: 100%; }
+        }
+
+        .spotify-content {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .spotify-album {
+            width: 48px; height: 48px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .spotify-info .song-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 230px;
+        }
+
+        .spotify-info .artist-name {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 3px;
+        }
+
+        /* Son Dinlenenler */
+        .recent-songs {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .recent-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.02);
+            padding: 7px 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            transition: background 0.2s;
+        }
+
+        .recent-item:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .recent-item .title { color: #ccc; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 220px; }
+        .recent-item .artist { color: var(--text-muted); font-size: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 110px; }
+
+        /* Footer Sayacı */
+        .footer {
+            margin-top: 18px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .visitor-count {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.04);
+            padding: 5px 14px;
+            border-radius: 20px;
+            color: #ddd;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        /* Neon Toast Pop-up Bildirimi */
+        #toast {
+            visibility: hidden;
+            min-width: 220px;
+            background-color: var(--neon-red);
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 10px 14px;
+            position: fixed;
+            z-index: 10000;
+            bottom: 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 12px;
+            box-shadow: 0 0 20px var(--neon-red);
+            opacity: 0;
+            transition: opacity 0.4s, bottom 0.4s;
+        }
+
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+            bottom: 45px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- OVERLAY (CLICK TO ENTER) -->
+    <div id="overlay">
+        <div class="enter-btn">[ CLICK TO ENTER ]</div>
+    </div>
+
+    <!-- MÜZİK KONTROL & SES SEVİYESİ PANELİ -->
+    <div class="audio-controls-panel">
+        <button class="music-control" id="music-toggle">
+            <i class="fa-solid fa-volume-high" id="music-icon"></i> <span id="music-status">Müzik Açık</span>
+        </button>
+        <input type="range" class="volume-slider" id="volume-control" min="0" max="1" step="0.01" value="0.4">
+    </div>
+
+    <!-- MP4 HAREKETLİ ARKA PLAN VİDEOSU (PEXELS NEON GECE ŞEHRİ) -->
+    <div class="bg-video-container">
+        <video autoplay muted loop playsinline id="bg-video">
+            <source src="https://www.pexels.com/download/video/7232003/" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- GİRİŞ SİLAH KURMA SESİ VE FON MÜZİĞİ -->
+    <audio id="gun-sound" src="https://assets.mixkit.co/active_storage/sfx/2140/2140-preview.mp3" preload="auto"></audio>
+    <audio id="bg-music" src="eski-biri.mp3" loop preload="auto"></audio>
+
+    <div class="container" id="main-card">
+
+        <!-- Kayan Üst Bant -->
+        <div class="top-bar">
+            <span>"Acı Tanrıdan gelir, mutsuzluk ise insan işidir." // RYDER</span>
+        </div>
+
+        <!-- Ryder Başlığı (Glitch Efektli) -->
+        <div class="header">
+            <h1 class="glitch-title">Ryder</h1>
+        </div>
+
+        <!-- Discord Profil (TIKLAYINCA KOPYALAR) -->
+        <div class="discord-card" onclick="copyDiscordName()">
+            <div class="avatar-box">
+                <img id="discord-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+                <div id="discord-status" class="status-dot"></div>
+            </div>
+            <div class="user-info">
+                <div id="discord-username" class="username">★Ryder</div>
+                <div id="discord-activity" class="activity">
+                    <i class="fa-solid fa-gamepad"></i> <span id="activity-text">Şu an boşta</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEAM & SPOTIFY PROFİL LİNKLERİ -->
+        <div class="links-group">
+            <a href="https://steamcommunity.com/profiles/76561199810142952/" target="_blank" class="link-btn steam-btn" onclick="playGunSound()">
+                <i class="fa-brands fa-steam"></i> Steam Profilim
+            </a>
+            <a href="https://open.spotify.com/user/31dqpa5ssk6uitgooyptqbbfanwi?si=61687de4f33d49ee" target="_blank" class="link-btn spotify-profile-btn" onclick="playGunSound()">
+                <i class="fa-brands fa-spotify"></i> Spotify Profilim
+            </a>
+        </div>
+
+        <!-- Özel Söz -->
+        <div class="quote-box">
+            <div class="quote-text" id="daily-quote">
+                "Acı Tanrıdan gelir, mutsuzluk ise insan işidir."
+            </div>
+        </div>
+
+        <!-- Spotify Canlı Oynatıcı -->
+        <div class="spotify-card">
+            <div class="spotify-header">
+                <div class="section-title">
+                    <i class="fa-brands fa-spotify" style="color: #1ed760;"></i> ŞU AN DİNLENİYOR
+                </div>
+                <!-- Equalizer Animasyonu -->
+                <div class="equalizer" id="spotify-eq">
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                </div>
+            </div>
+            <div class="spotify-content">
+                <img id="spotify-cover" class="spotify-album" src="https://via.placeholder.com/60/111/fff?text=Music" alt="Cover">
+                <div class="spotify-info">
+                    <div id="spotify-title" class="song-name">Müzik Çalmıyor</div>
+                    <div id="spotify-artist" class="artist-name">Spotify Pasif</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Son Dinlenenler -->
+        <div class="section-title" style="margin-bottom: 8px;">
+            <i class="fa-solid fa-clock-rotate-left"></i> SON DİNLENENLER
+        </div>
+        <ul class="recent-songs" id="recent-songs-list">
+            <li class="recent-item">
+                <span class="title">Henüz şarkı geçmişi yok</span>
+                <span class="artist">Spotify</span>
+            </li>
+        </ul>
+
+        <!-- Ziyaretçi Sayacı -->
+        <div class="footer">
+            <div class="visitor-count">
+                <i class="fa-solid fa-eye"></i> <span id="visits">1</span> Ziyaretçi
+            </div>
+        </div>
+    </div>
+
+    <!-- Discord Kopyalama Bildirimi -->
+    <div id="toast">Discord Adı Kopyalandı! (rydeer1)</div>
+
+    <!-- SCRIPT -->
+    <script>
+        const DISCORD_ID = "834164548344348713";
+        const overlay = document.getElementById("overlay");
+        const mainCard = document.getElementById("main-card");
+        const gunSound = document.getElementById("gun-sound");
+        const bgMusic = document.getElementById("bg-music");
+        const musicToggle = document.getElementById("music-toggle");
+        const musicIcon = document.getElementById("music-icon");
+        const musicStatus = document.getElementById("music-status");
+        const volumeControl = document.getElementById("volume-control");
+        const spotifyEq = document.getElementById("spotify-eq");
+
+        let isPlaying = false;
+        let lastPlayedSong = "";
+
+        // Şarkı geçmişini yükle
+        let history = JSON.parse(localStorage.getItem("ryder_song_history") || "[]");
+        renderRecentSongs();
+
+        // Silah Sürgü Çekme Sesi
+        function playGunSound() {
+            gunSound.currentTime = 0;
+            gunSound.play().catch(() => {});
+        }
+
+        // GİRİŞ TIKLAMASI
+        overlay.addEventListener("click", () => {
+            overlay.classList.add("hidden");
+            mainCard.classList.add("visible");
+
+            playGunSound();
+
+            bgMusic.volume = volumeControl.value;
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                musicIcon.className = "fa-solid fa-volume-high";
+                musicStatus.innerText = "Müzik Açık";
+            }).catch(() => {});
+        });
+
+        // MÜZİK AÇ / KAPAT
+        musicToggle.addEventListener("click", (e) => {
+            e.stopPropagation();
+            playGunSound();
+            if (isPlaying) {
+                bgMusic.pause();
+                isPlaying = false;
+                musicIcon.className = "fa-solid fa-volume-xmark";
+                musicStatus.innerText = "Müzik Kapalı";
+            } else {
+                bgMusic.play();
+                isPlaying = true;
+                musicIcon.className = "fa-solid fa-volume-high";
+                musicStatus.innerText = "Müzik Açık";
+            }
+        });
+
+        // SES AYARI SLIDER
+        volumeControl.addEventListener("input", (e) => {
+            bgMusic.volume = e.target.value;
+        });
+
+        // DISCORD KOPYALAMA
+        function copyDiscordName() {
+            playGunSound();
+            navigator.clipboard.writeText("rydeer1");
+            
+            const toast = document.getElementById("toast");
+            toast.className = "show";
+            setTimeout(function(){ 
+                toast.className = toast.className.replace("show", ""); 
+            }, 3000);
+        }
+
+        // LANYARD DISCORD ENTEGRASYONU
+        function connectLanyard() {
+            const ws = new WebSocket("wss://api.lanyard.rest/socket");
+
+            ws.onopen = () => {
+                ws.send(JSON.stringify({
+                    op: 2,
+                    d: { subscribe_to_id: DISCORD_ID }
+                }));
+            };
+
+            ws.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                if (data.t === "INIT_STATE" || data.t === "PRESENCE_UPDATE") {
+                    updateProfile(data.d);
+                }
+            };
+
+            ws.onclose = () => setTimeout(connectLanyard, 5000);
+        }
+
+        function updateProfile(userData) {
+            if (!userData) return;
+
+            const user = userData.discord_user;
+            
+            // TEK YILDIZ TEMİZLEMESİ
+            let cleanName = user.global_name || user.username;
+            cleanName = cleanName.replace(/★/g, '').trim();
+            document.getElementById("discord-username").innerText = "★" + cleanName;
+            
+            const avatarUrl = user.avatar 
+                ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`
+                : "https://cdn.discordapp.com/embed/avatars/0.png";
+            document.getElementById("discord-avatar").src = avatarUrl;
+
+            const statusDot = document.getElementById("discord-status");
+            statusDot.className = "status-dot " + userData.discord_status;
+
+            const activityText = document.getElementById("activity-text");
+            const customAct = userData.activities.find(a => a.type === 0);
+            if (customAct) {
+                activityText.innerText = customAct.name + " oynuyor";
+            } else {
+                activityText.innerText = "Şu an boşta";
+            }
+
+            // Spotify Takip
+            if (userData.listening_to_spotify && userData.spotify) {
+                const sp = userData.spotify;
+                document.getElementById("spotify-title").innerText = sp.song;
+                document.getElementById("spotify-artist").innerText = sp.artist;
+                document.getElementById("spotify-cover").src = sp.album_art_url;
+                spotifyEq.classList.add("active");
+
+                const songKey = sp.song + " - " + sp.artist;
+                if (lastPlayedSong !== songKey) {
+                    lastPlayedSong = songKey;
+                    addToHistory(sp.song, sp.artist);
+                }
+            } else {
+                document.getElementById("spotify-title").innerText = "Müzik Çalmıyor";
+                document.getElementById("spotify-artist").innerText = "Spotify Pasif";
+                document.getElementById("spotify-cover").src = "https://via.placeholder.com/60/111/fff?text=Off";
+                spotifyEq.classList.remove("active");
+            }
+        }
+
+        function addToHistory(song, artist) {
+            history = history.filter(item => item.song !== song);
+            history.unshift({ song, artist });
+            if (history.length > 5) history.pop();
+            
+            localStorage.setItem("ryder_song_history", JSON.stringify(history));
+            renderRecentSongs();
+        }
+
+        function renderRecentSongs() {
+            const listEl = document.getElementById("recent-songs-list");
+            if (!history || history.length === 0) {
+                listEl.innerHTML = `
+                    <li class="recent-item">
+                        <span class="title">Şarkı dinledikçe buraya eklenir</span>
+                        <span class="artist">Spotify</span>
+                    </li>`;
+                return;
+            }
+
+            listEl.innerHTML = history.map(item => `
+                <li class="recent-item">
+                    <span class="title">${item.song}</span>
+                    <span class="artist">${item.artist}</span>
+                </li>
+            `).join('');
+        }
+
+        // KESİN ÇALIŞAN GARANTİLİ YEREL SAYAÇ SİSTEMİ (1'DEN BAŞLAR)
+        let visits = localStorage.getItem("ryder_site_visits");
+        if (!visits) {
+            visits = 1; 
+        } else {
+            visits = parseInt(visits) + 1;
+        }
+        localStorage.setItem("ryder_site_visits", visits);
+        document.getElementById("visits").innerText = visits;
+
+        connectLanyard();
+    </script>
+</body>
+</html>
