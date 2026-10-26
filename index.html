@@ -86,7 +86,7 @@
             100% { opacity: 1; transform: scale(1.03); }
         }
 
-        /* MP4 HAREKETLİ ARKA PLAN VİDEOSU (PEXELS NEON GECE ŞEHRİ) */
+        /* MP4 HAREKETLİ ARKA PLAN VİDEOSU */
         .bg-video-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -168,7 +168,7 @@
             box-shadow: 0 0 8px var(--neon-red);
         }
 
-        /* KANLI VE NEON KENAR IŞIKLI ANA KART */
+        /* ANA KART */
         .container {
             position: relative;
             z-index: 1;
@@ -346,7 +346,7 @@
             gap: 6px;
         }
 
-        /* YAN YANA LİNK BUTONLARI (STEAM & SPOTIFY) */
+        /* YAN YANA LİNK BUTONLARI */
         .links-group {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -435,7 +435,6 @@
             gap: 8px;
         }
 
-        /* Equalizer Animasyonu */
         .equalizer {
             display: none;
             align-items: flex-end;
@@ -540,7 +539,7 @@
             border: 1px solid rgba(255,255,255,0.06);
         }
 
-        /* Neon Toast Pop-up Bildirimi */
+        /* Neon Toast Pop-up */
         #toast {
             visibility: hidden;
             min-width: 220px;
@@ -573,7 +572,7 @@
         <div class="enter-btn">[ CLICK TO ENTER ]</div>
     </div>
 
-    <!-- MÜZİK KONTROL & SES SEVİYESİ PANELİ -->
+    <!-- MÜZİK KONTROL PANELİ -->
     <div class="audio-controls-panel">
         <button class="music-control" id="music-toggle">
             <i class="fa-solid fa-volume-high" id="music-icon"></i> <span id="music-status">Müzik Açık</span>
@@ -581,14 +580,14 @@
         <input type="range" class="volume-slider" id="volume-control" min="0" max="1" step="0.01" value="0.4">
     </div>
 
-    <!-- MP4 HAREKETLİ ARKA PLAN VİDEOSU (PEXELS NEON GECE ŞEHRİ) -->
+    <!-- MP4 HAREKETLİ ARKA PLAN VİDEOSU -->
     <div class="bg-video-container">
         <video autoplay muted loop playsinline id="bg-video">
             <source src="https://www.pexels.com/download/video/7232003/" type="video/mp4">
         </video>
     </div>
 
-    <!-- GİRİŞ SİLAH KURMA SESİ VE FON MÜZİĞİ -->
+    <!-- SESLER -->
     <audio id="gun-sound" src="https://assets.mixkit.co/active_storage/sfx/2140/2140-preview.mp3" preload="auto"></audio>
     <audio id="bg-music" src="eski-biri.mp3" loop preload="auto"></audio>
 
@@ -599,12 +598,12 @@
             <span>"Acı Tanrıdan gelir, mutsuzluk ise insan işidir." // RYDER</span>
         </div>
 
-        <!-- Ryder Başlığı (Glitch Efektli) -->
+        <!-- Başlık -->
         <div class="header">
             <h1 class="glitch-title">Ryder</h1>
         </div>
 
-        <!-- Discord Profil (TIKLAYINCA KOPYALAR) -->
+        <!-- Discord Kartı -->
         <div class="discord-card" onclick="copyDiscordName()">
             <div class="avatar-box">
                 <img id="discord-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
@@ -618,7 +617,7 @@
             </div>
         </div>
 
-        <!-- STEAM & SPOTIFY PROFİL LİNKLERİ -->
+        <!-- LİNKLER -->
         <div class="links-group">
             <a href="https://steamcommunity.com/profiles/76561199810142952/" target="_blank" class="link-btn steam-btn" onclick="playGunSound()">
                 <i class="fa-brands fa-steam"></i> Steam Profilim
@@ -630,18 +629,17 @@
 
         <!-- Özel Söz -->
         <div class="quote-box">
-            <div class="quote-text" id="daily-quote">
+            <div class="quote-text">
                 "Acı Tanrıdan gelir, mutsuzluk ise insan işidir."
             </div>
         </div>
 
-        <!-- Spotify Canlı Oynatıcı -->
+        <!-- Spotify Canlı Kartı -->
         <div class="spotify-card">
             <div class="spotify-header">
                 <div class="section-title">
                     <i class="fa-brands fa-spotify" style="color: #1ed760;"></i> ŞU AN DİNLENİYOR
                 </div>
-                <!-- Equalizer Animasyonu -->
                 <div class="equalizer" id="spotify-eq">
                     <div class="eq-bar"></div>
                     <div class="eq-bar"></div>
@@ -676,7 +674,7 @@
         </div>
     </div>
 
-    <!-- Discord Kopyalama Bildirimi -->
+    <!-- Toast Bildirimi -->
     <div id="toast">Discord Adı Kopyalandı! (rydeer1)</div>
 
     <!-- SCRIPT -->
@@ -695,17 +693,15 @@
         let isPlaying = false;
         let lastPlayedSong = "";
 
-        // Şarkı geçmişini yükle
         let history = JSON.parse(localStorage.getItem("ryder_song_history") || "[]");
         renderRecentSongs();
 
-        // Silah Sürgü Çekme Sesi
         function playGunSound() {
             gunSound.currentTime = 0;
             gunSound.play().catch(() => {});
         }
 
-        // GİRİŞ TIKLAMASI
+        // GİRİŞ VE MÜZİK BAŞLATMA
         overlay.addEventListener("click", () => {
             overlay.classList.add("hidden");
             mainCard.classList.add("visible");
@@ -717,10 +713,12 @@
                 isPlaying = true;
                 musicIcon.className = "fa-solid fa-volume-high";
                 musicStatus.innerText = "Müzik Açık";
-            }).catch(() => {});
+            }).catch(e => {
+                console.log("Müzik otomatik başlatılamadı:", e);
+            });
         });
 
-        // MÜZİK AÇ / KAPAT
+        // MÜZİK AÇ / KAPAT BUTONU
         musicToggle.addEventListener("click", (e) => {
             e.stopPropagation();
             playGunSound();
@@ -730,19 +728,18 @@
                 musicIcon.className = "fa-solid fa-volume-xmark";
                 musicStatus.innerText = "Müzik Kapalı";
             } else {
-                bgMusic.play();
-                isPlaying = true;
-                musicIcon.className = "fa-solid fa-volume-high";
-                musicStatus.innerText = "Müzik Açık";
+                bgMusic.play().then(() => {
+                    isPlaying = true;
+                    musicIcon.className = "fa-solid fa-volume-high";
+                    musicStatus.innerText = "Müzik Açık";
+                }).catch(err => console.log("Çalma hatası:", err));
             }
         });
 
-        // SES AYARI SLIDER
         volumeControl.addEventListener("input", (e) => {
             bgMusic.volume = e.target.value;
         });
 
-        // DISCORD KOPYALAMA
         function copyDiscordName() {
             playGunSound();
             navigator.clipboard.writeText("rydeer1");
@@ -754,7 +751,7 @@
             }, 3000);
         }
 
-        // LANYARD DISCORD ENTEGRASYONU
+        // DISCORD LANYARD
         function connectLanyard() {
             const ws = new WebSocket("wss://api.lanyard.rest/socket");
 
@@ -777,10 +774,8 @@
 
         function updateProfile(userData) {
             if (!userData) return;
-
             const user = userData.discord_user;
             
-            // TEK YILDIZ TEMİZLEMESİ
             let cleanName = user.global_name || user.username;
             cleanName = cleanName.replace(/★/g, '').trim();
             document.getElementById("discord-username").innerText = "★" + cleanName;
@@ -801,7 +796,6 @@
                 activityText.innerText = "Şu an boşta";
             }
 
-            // Spotify Takip
             if (userData.listening_to_spotify && userData.spotify) {
                 const sp = userData.spotify;
                 document.getElementById("spotify-title").innerText = sp.song;
@@ -826,7 +820,6 @@
             history = history.filter(item => item.song !== song);
             history.unshift({ song, artist });
             if (history.length > 5) history.pop();
-            
             localStorage.setItem("ryder_song_history", JSON.stringify(history));
             renderRecentSongs();
         }
@@ -850,14 +843,13 @@
             `).join('');
         }
 
-        // KESİN ÇALIŞAN GARANTİLİ YEREL SAYAÇ SİSTEMİ (1'DEN BAŞLAR)
-        let visits = localStorage.getItem("ryder_site_visits");
-        if (!visits) {
-            visits = 1; 
-        } else {
-            visits = parseInt(visits) + 1;
+        // AKILLI ZİYARETÇİ SAYACI (F5 İLE ŞİŞMEZ, GERÇEKTE YENİ GİRİŞTE ARTAR)
+        let visits = parseInt(localStorage.getItem("ryder_real_visits") || "125"); // Başlangıç tabanı
+        if (!sessionStorage.getItem("has_visited_session")) {
+            visits += 1;
+            localStorage.setItem("ryder_real_visits", visits);
+            sessionStorage.setItem("has_visited_session", "true");
         }
-        localStorage.setItem("ryder_site_visits", visits);
         document.getElementById("visits").innerText = visits;
 
         connectLanyard();
