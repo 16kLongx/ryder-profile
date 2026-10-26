@@ -15,7 +15,7 @@
             --accent-glow: rgba(139, 0, 0, 0.7);
             --neon-red: #ff0055;
             --neon-blue: #00f0ff;
-            --card-bg: rgba(10, 10, 12, 0.88);
+            --card-bg: rgba(10, 10, 12, 0.9);
             --text-main: #f0f0f0;
             --text-muted: #8a8a93;
         }
@@ -40,6 +40,19 @@
             overflow-x: hidden;
         }
 
+        /* FARE İZİ (NEON ÇİZGİ) */
+        .trail-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            pointer-events: none;
+            box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-red);
+            transition: transform 0.2s, opacity 0.4s;
+            z-index: 99999;
+        }
+
         /* CRT TV TARAMA ÇİZGİLERİ EFEKTİ */
         body::after {
             content: " ";
@@ -58,7 +71,7 @@
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: #050505;
-            z-index: 9999;
+            z-index: 999999;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -86,7 +99,7 @@
             100% { opacity: 1; transform: scale(1.03); }
         }
 
-        /* MP4 HAREKETLİ ARKA PLAN VİDEOSU */
+        /* ARKA PLAN VİDEOSU */
         .bg-video-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -183,6 +196,16 @@
             transform: translateY(20px);
             transition: all 1s ease 0.3s;
             animation: neonBorderPulse 4s infinite alternate;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .container::-webkit-scrollbar {
+            width: 4px;
+        }
+        .container::-webkit-scrollbar-thumb {
+            background: var(--neon-red);
+            border-radius: 2px;
         }
 
         @keyframes neonBorderPulse {
@@ -201,7 +224,7 @@
             transform: translateY(0);
         }
 
-        /* KAYAN ÜST BANT YAZISI */
+        /* KAYAN ÜST BANT */
         .top-bar {
             background: rgba(255, 0, 85, 0.12);
             border: 1px solid rgba(255, 0, 85, 0.4);
@@ -213,7 +236,6 @@
             margin-bottom: 18px;
             overflow: hidden;
             white-space: nowrap;
-            box-shadow: 0 0 10px rgba(255, 0, 85, 0.15);
         }
 
         .top-bar span {
@@ -226,7 +248,7 @@
             100% { transform: translateX(-100%); }
         }
 
-        /* Header & GLITCH EFEKTİ */
+        /* BAŞLIK */
         .header {
             text-align: center;
             margin-bottom: 18px;
@@ -245,46 +267,7 @@
             display: inline-block;
         }
 
-        .glitch-title::before, .glitch-title::after {
-            content: "Ryder";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: transparent;
-        }
-
-        .glitch-title::before {
-            left: 2px;
-            text-shadow: -2px 0 #ff0055;
-            clip: rect(24px, 550px, 90px, 0);
-            animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
-        }
-
-        .glitch-title::after {
-            left: -2px;
-            text-shadow: -2px 0 #00e5ff;
-            clip: rect(85px, 550px, 140px, 0);
-            animation: glitch-anim-2 2s infinite linear alternate-reverse;
-        }
-
-        @keyframes glitch-anim-1 {
-            0% { clip: rect(10px, 9999px, 30px, 0); }
-            20% { clip: rect(40px, 9999px, 80px, 0); }
-            40% { clip: rect(20px, 9999px, 50px, 0); }
-            60% { clip: rect(70px, 9999px, 90px, 0); }
-            80% { clip: rect(30px, 9999px, 60px, 0); }
-            100% { clip: rect(50px, 9999px, 100px, 0); }
-        }
-
-        @keyframes glitch-anim-2 {
-            0% { clip: rect(60px, 9999px, 90px, 0); }
-            20% { clip: rect(10px, 9999px, 40px, 0); }
-            40% { clip: rect(80px, 9999px, 100px, 0); }
-            60% { clip: rect(30px, 9999px, 70px, 0); }
-            80% { clip: rect(50px, 9999px, 80px, 0); }
-            100% { clip: rect(20px, 9999px, 50px, 0); }
-        }
-
-        /* Discord Kartı */
+        /* DISCORD KARTI */
         .discord-card {
             display: flex;
             align-items: center;
@@ -326,10 +309,7 @@
             background: #747f8d;
             border: 3px solid #0c0c0e;
         }
-
         .status-dot.online { background: #23a55a; box-shadow: 0 0 8px #23a55a; }
-        .status-dot.idle { background: #f0b232; }
-        .status-dot.dnd { background: #f23f43; }
 
         .user-info .username {
             font-size: 16px;
@@ -341,12 +321,9 @@
             font-size: 12px;
             color: var(--text-muted);
             margin-top: 4px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
         }
 
-        /* YAN YANA LİNK BUTONLARI */
+        /* LİNKLER */
         .links-group {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -372,44 +349,28 @@
             border: 1px solid rgba(102, 192, 244, 0.2);
             color: #c6d4df;
         }
-
-        .steam-btn:hover {
-            border-color: #66c0f4;
-            color: #fff;
-            box-shadow: 0 0 15px rgba(102, 192, 244, 0.4);
-            transform: translateY(-2px);
-        }
+        .steam-btn:hover { border-color: #66c0f4; color: #fff; box-shadow: 0 0 15px rgba(102, 192, 244, 0.4); }
 
         .spotify-profile-btn {
             background: linear-gradient(90deg, #0f2b17 0%, #123d1f 100%);
             border: 1px solid rgba(30, 215, 96, 0.3);
             color: #1ed760;
         }
+        .spotify-profile-btn:hover { border-color: #1ed760; color: #fff; box-shadow: 0 0 15px rgba(30, 215, 96, 0.4); }
 
-        .spotify-profile-btn:hover {
-            border-color: #1ed760;
-            color: #fff;
-            box-shadow: 0 0 15px rgba(30, 215, 96, 0.4);
-            transform: translateY(-2px);
-        }
-
-        /* Söz Kutusu */
+        /* SÖZ KUTUSU */
         .quote-box {
             background: rgba(139, 0, 0, 0.15);
             border-left: 3px solid var(--neon-red);
             padding: 12px 14px;
             border-radius: 0 10px 10px 0;
             margin-bottom: 16px;
-        }
-
-        .quote-text {
             font-size: 12.5px;
             font-style: italic;
             color: #ddd;
-            line-height: 1.4;
         }
 
-        /* Spotify Canlı Kartı & Equalizer */
+        /* SPOTİFY KARTI */
         .spotify-card {
             background: rgba(30, 215, 96, 0.05);
             border: 1px solid rgba(30, 215, 96, 0.18);
@@ -417,14 +378,12 @@
             padding: 14px;
             margin-bottom: 16px;
         }
-
         .spotify-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 10px;
         }
-
         .section-title {
             font-size: 11px;
             text-transform: uppercase;
@@ -434,92 +393,147 @@
             align-items: center;
             gap: 8px;
         }
-
         .equalizer {
             display: none;
             align-items: flex-end;
             gap: 3px;
             height: 14px;
         }
-
-        .equalizer.active {
-            display: flex;
-        }
-
+        .equalizer.active { display: flex; }
         .eq-bar {
             width: 3px;
             background: #1ed760;
             border-radius: 2px;
             animation: eq-bounce 1s infinite ease-in-out alternate;
         }
+        @keyframes eq-bounce { 0% { height: 20%; } 100% { height: 100%; } }
 
-        .eq-bar:nth-child(1) { height: 60%; animation-delay: 0.1s; }
-        .eq-bar:nth-child(2) { height: 100%; animation-delay: 0.3s; }
-        .eq-bar:nth-child(3) { height: 40%; animation-delay: 0.2s; }
+        .spotify-content { display: flex; align-items: center; gap: 14px; }
+        .spotify-album { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; }
+        .spotify-info .song-name { font-size: 13px; font-weight: 600; color: #fff; max-width: 230px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .spotify-info .artist-name { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
 
-        @keyframes eq-bounce {
-            0% { height: 20%; }
-            100% { height: 100%; }
+        /* --- MİNİ OYUN ALANI --- */
+        .minigame-card {
+            background: rgba(0, 240, 255, 0.05);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 16px;
+            text-align: center;
         }
-
-        .spotify-content {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .spotify-album {
-            width: 48px; height: 48px;
+        .game-screen {
+            width: 100%;
+            height: 90px;
+            background: #050508;
+            border: 1px dashed rgba(0, 240, 255, 0.4);
             border-radius: 8px;
-            object-fit: cover;
-        }
-
-        .spotify-info .song-name {
-            font-size: 13px;
-            font-weight: 600;
-            color: #fff;
-            white-space: nowrap;
+            position: relative;
             overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 230px;
+            cursor: crosshair;
+            margin-top: 8px;
         }
-
-        .spotify-info .artist-name {
+        .target {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: var(--neon-red);
+            border: 2px solid #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--neon-red);
+            display: none;
+            cursor: pointer;
+        }
+        .game-btn {
+            background: rgba(0, 240, 255, 0.15);
+            border: 1px solid var(--neon-blue);
+            color: var(--neon-blue);
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-family: 'Orbitron', sans-serif;
             font-size: 11px;
-            color: var(--text-muted);
-            margin-top: 3px;
+            cursor: pointer;
+            transition: 0.2s;
         }
+        .game-btn:hover { background: var(--neon-blue); color: #000; }
 
-        /* Son Dinlenenler */
-        .recent-songs {
-            list-style: none;
+        /* --- YORUM / ZİYARETÇİ DEFTERİ --- */
+        .guestbook-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 16px;
+        }
+        .gb-form {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
+            margin-top: 10px;
         }
-
-        .recent-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(255,255,255,0.02);
-            padding: 7px 10px;
+        .gb-input, .gb-textarea {
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 8px 10px;
             border-radius: 8px;
+            color: #fff;
+            font-size: 12px;
+            outline: none;
+        }
+        .gb-input:focus, .gb-textarea:focus { border-color: var(--neon-red); }
+        .gb-textarea { resize: none; height: 50px; }
+        .gb-submit {
+            background: var(--neon-red);
+            color: #fff;
+            border: none;
+            padding: 8px;
+            border-radius: 8px;
+            font-family: 'Orbitron', sans-serif;
             font-size: 11px;
-            transition: background 0.2s;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 0 10px rgba(255,0,85,0.4);
         }
+        .gb-submit:hover { opacity: 0.85; }
 
-        .recent-item:hover {
-            background: rgba(255,255,255,0.05);
+        .comments-list {
+            max-height: 140px;
+            overflow-y: auto;
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
+        .comment-item {
+            background: rgba(255,255,255,0.03);
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-size: 11.5px;
+            position: relative;
+            border-left: 2px solid var(--neon-blue);
+        }
+        .comment-author { font-weight: bold; color: var(--neon-blue); margin-bottom: 2px; }
+        .comment-text { color: #ccc; word-break: break-word; }
+        
+        /* SİLME BUTONU (Gizli/Admin) */
+        .delete-cmt {
+            position: absolute;
+            top: 6px;
+            right: 8px;
+            background: none;
+            border: none;
+            color: #ff3333;
+            cursor: pointer;
+            font-size: 12px;
+            opacity: 0;
+            transition: 0.2s;
+        }
+        .comment-item:hover .delete-cmt { opacity: 1; }
 
-        .recent-item .title { color: #ccc; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 220px; }
-        .recent-item .artist { color: var(--text-muted); font-size: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 110px; }
-
-        /* Footer Sayacı */
+        /* FOOTER */
         .footer {
-            margin-top: 18px;
-            padding-top: 12px;
+            margin-top: 14px;
+            padding-top: 10px;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
             display: flex;
             justify-content: center;
@@ -527,7 +541,6 @@
             font-size: 11px;
             color: var(--text-muted);
         }
-
         .visitor-count {
             display: flex;
             align-items: center;
@@ -539,7 +552,7 @@
             border: 1px solid rgba(255,255,255,0.06);
         }
 
-        /* Neon Toast Pop-up */
+        /* TOAST */
         #toast {
             visibility: hidden;
             min-width: 220px;
@@ -549,7 +562,7 @@
             border-radius: 8px;
             padding: 10px 14px;
             position: fixed;
-            z-index: 10000;
+            z-index: 1000000;
             bottom: 30px;
             font-family: 'Orbitron', sans-serif;
             font-size: 12px;
@@ -557,22 +570,17 @@
             opacity: 0;
             transition: opacity 0.4s, bottom 0.4s;
         }
-
-        #toast.show {
-            visibility: visible;
-            opacity: 1;
-            bottom: 45px;
-        }
+        #toast.show { visibility: visible; opacity: 1; bottom: 45px; }
     </style>
 </head>
 <body>
 
-    <!-- OVERLAY (CLICK TO ENTER) -->
+    <!-- OVERLAY -->
     <div id="overlay">
         <div class="enter-btn">[ CLICK TO ENTER ]</div>
     </div>
 
-    <!-- MÜZİK KONTROL PANELİ -->
+    <!-- MÜZİK KONTROL -->
     <div class="audio-controls-panel">
         <button class="music-control" id="music-toggle">
             <i class="fa-solid fa-volume-high" id="music-icon"></i> <span id="music-status">Müzik Açık</span>
@@ -580,7 +588,7 @@
         <input type="range" class="volume-slider" id="volume-control" min="0" max="1" step="0.01" value="0.4">
     </div>
 
-    <!-- MP4 HAREKETLİ ARKA PLAN VİDEOSU -->
+    <!-- VİDEO -->
     <div class="bg-video-container">
         <video autoplay muted loop playsinline id="bg-video">
             <source src="https://www.pexels.com/download/video/7232003/" type="video/mp4">
@@ -593,17 +601,17 @@
 
     <div class="container" id="main-card">
 
-        <!-- Kayan Üst Bant -->
+        <!-- ÜST BANT -->
         <div class="top-bar">
             <span>"Acı Tanrıdan gelir, mutsuzluk ise insan işidir." // RYDER</span>
         </div>
 
-        <!-- Başlık -->
+        <!-- BAŞLIK -->
         <div class="header">
             <h1 class="glitch-title">Ryder</h1>
         </div>
 
-        <!-- Discord Kartı -->
+        <!-- DİSCORD -->
         <div class="discord-card" onclick="copyDiscordName()">
             <div class="avatar-box">
                 <img id="discord-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
@@ -620,21 +628,31 @@
         <!-- LİNKLER -->
         <div class="links-group">
             <a href="https://steamcommunity.com/profiles/76561199810142952/" target="_blank" class="link-btn steam-btn" onclick="playGunSound()">
-                <i class="fa-brands fa-steam"></i> Steam Profilim
+                <i class="fa-brands fa-steam"></i> Steam
             </a>
             <a href="https://open.spotify.com/user/31dqpa5ssk6uitgooyptqbbfanwi?si=61687de4f33d49ee" target="_blank" class="link-btn spotify-profile-btn" onclick="playGunSound()">
-                <i class="fa-brands fa-spotify"></i> Spotify Profilim
+                <i class="fa-brands fa-spotify"></i> Spotify
             </a>
         </div>
 
-        <!-- Özel Söz -->
+        <!-- SÖZ -->
         <div class="quote-box">
-            <div class="quote-text">
-                "Acı Tanrıdan gelir, mutsuzluk ise insan işidir."
-            </div>
+            "Acı Tanrıdan gelir, mutsuzluk ise insan işidir."
         </div>
 
-        <!-- Spotify Canlı Kartı -->
+        <!-- MİNİ OYUN KARTI -->
+        <div class="minigame-card">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="section-title"><i class="fa-solid fa-crosshairs"></i> HEDEFİ VUR</span>
+                <span style="font-size: 11px; font-family:'Orbitron'; color:var(--neon-blue);">Skor: <span id="score">0</span></span>
+            </div>
+            <div class="game-screen" id="game-screen">
+                <div class="target" id="target" onclick="hitTarget(event)"></div>
+            </div>
+            <button class="game-btn" id="game-start-btn" onclick="startGame()" style="margin-top: 8px;">OYUNU BAŞLAT</button>
+        </div>
+
+        <!-- SPOTİFY KARTI -->
         <div class="spotify-card">
             <div class="spotify-header">
                 <div class="section-title">
@@ -655,18 +673,20 @@
             </div>
         </div>
 
-        <!-- Son Dinlenenler -->
-        <div class="section-title" style="margin-bottom: 8px;">
-            <i class="fa-solid fa-clock-rotate-left"></i> SON DİNLENENLER
+        <!-- YORUM / ZİYARETÇİ DEFTERİ -->
+        <div class="guestbook-card">
+            <div class="section-title"><i class="fa-solid fa-comments"></i> SOKAK DUVARI (YORUMLAR)</div>
+            <div class="gb-form">
+                <input type="text" id=" commenter-name" class="gb-input" placeholder="Adın veya lakabın..." maxlength="20">
+                <textarea id="comment-text" class="gb-textarea" placeholder="Duvara bir söz bırak..." maxlength="120"></textarea>
+                <button class="gb-submit" onclick="addComment()">YORUMU GÖNDER</button>
+            </div>
+            <div class="comments-list" id="comments-list">
+                <!-- Yorumlar buraya düşecek -->
+            </div>
         </div>
-        <ul class="recent-songs" id="recent-songs-list">
-            <li class="recent-item">
-                <span class="title">Henüz şarkı geçmişi yok</span>
-                <span class="artist">Spotify</span>
-            </li>
-        </ul>
 
-        <!-- Ziyaretçi Sayacı -->
+        <!-- SAYACI -->
         <div class="footer">
             <div class="visitor-count">
                 <i class="fa-solid fa-eye"></i> <span id="visits">1</span> Ziyaretçi
@@ -674,11 +694,120 @@
         </div>
     </div>
 
-    <!-- Toast Bildirimi -->
+    <!-- TOAST -->
     <div id="toast">Discord Adı Kopyalandı! (rydeer1)</div>
 
     <!-- SCRIPT -->
     <script>
+        // --- FARE İZİ (NEON ÇİZGİ EFEKTİ) ---
+        document.addEventListener("mousemove", (e) => {
+            const dot = document.createElement("div");
+            dot.className = "trail-dot";
+            dot.style.left = e.clientX + "px";
+            dot.style.top = e.clientY + "px";
+            document.body.appendChild(dot);
+
+            setTimeout(() => {
+                dot.style.transform = "scale(0)";
+                dot.style.opacity = "0";
+            }, 50);
+
+            setTimeout(() => {
+                dot.remove();
+            }, 400);
+        });
+
+        // --- MİNİ OYUN (HEDEF VURMA) ---
+        let score = 0;
+        let gameInterval;
+        const target = document.getElementById("target");
+        const gameScreen = document.getElementById("game-screen");
+        const scoreDisplay = document.getElementById("score");
+        const startBtn = document.getElementById("game-start-btn");
+
+        function startGame() {
+            score = 0;
+            scoreDisplay.innerText = score;
+            startBtn.style.display = "none";
+            target.style.display = "block";
+            moveTarget();
+            
+            clearInterval(gameInterval);
+            gameInterval = setInterval(() => {
+                moveTarget();
+            }, 1200);
+        }
+
+        function moveTarget() {
+            const maxX = gameScreen.clientWidth - 28;
+            const maxY = gameScreen.clientHeight - 28;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            target.style.left = randomX + "px";
+            target.style.top = randomY + "px";
+        }
+
+        function hitTarget(event) {
+            event.stopPropagation();
+            playGunSound();
+            score += 10;
+            scoreDisplay.innerText = score;
+            moveTarget();
+        }
+
+        // --- YORUM SİSTEMİ (ZİYARETÇİ DEFTERİ) ---
+        let comments = JSON.parse(localStorage.getItem("ryder_comments") || "[]");
+        renderComments();
+
+        function addComment() {
+            const nameInput = document.getElementById("commenter-name");
+            const textInput = document.getElementById("comment-text");
+            
+            const name = nameInput.value.trim() || "Gizli Sokak Sakini";
+            const text = textInput.value.trim();
+
+            if (!text) {
+                alert("Lütfen bir yorum yaz kraker!");
+                return;
+            }
+
+            playGunSound();
+            comments.unshift({ id: Date.now(), name, text });
+            localStorage.setItem("ryder_comments", JSON.stringify(comments));
+
+            nameInput.value = "";
+            textInput.value = "";
+            renderComments();
+        }
+
+        function deleteComment(id) {
+            playGunSound();
+            comments = comments.filter(c => c.id !== id);
+            localStorage.setItem("ryder_comments", JSON.stringify(comments));
+            renderComments();
+        }
+
+        function renderComments() {
+            const listEl = document.getElementById("comments-list");
+            if (comments.length === 0) {
+                listEl.innerHTML = `<div style="text-align:center; font-size:11px; color:#666; padding:10px;">Henüz duvarı kirleten olmamış. İlk sözü sen bırak!</div>`;
+                return;
+            }
+
+            listEl.innerHTML = comments.map(c => `
+                <div class="comment-item">
+                    <div class="comment-author">${escapeHtml(c.name)}</div>
+                    <div class="comment-text">${escapeHtml(c.text)}</div>
+                    <button class="delete-cmt" onclick="deleteComment(${c.id})" title="Yorumu Sil"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            `).join('');
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
+        // --- DİĞER FONKSİYONLAR (Müzik, Discord, Ses) ---
         const DISCORD_ID = "834164548344348713";
         const overlay = document.getElementById("overlay");
         const mainCard = document.getElementById("main-card");
@@ -701,11 +830,9 @@
             gunSound.play().catch(() => {});
         }
 
-        // GİRİŞ VE MÜZİK BAŞLATMA
         overlay.addEventListener("click", () => {
             overlay.classList.add("hidden");
             mainCard.classList.add("visible");
-
             playGunSound();
 
             bgMusic.volume = volumeControl.value;
@@ -713,12 +840,9 @@
                 isPlaying = true;
                 musicIcon.className = "fa-solid fa-volume-high";
                 musicStatus.innerText = "Müzik Açık";
-            }).catch(e => {
-                console.log("Müzik otomatik başlatılamadı:", e);
-            });
+            }).catch(() => {});
         });
 
-        // MÜZİK AÇ / KAPAT BUTONU
         musicToggle.addEventListener("click", (e) => {
             e.stopPropagation();
             playGunSound();
@@ -732,7 +856,7 @@
                     isPlaying = true;
                     musicIcon.className = "fa-solid fa-volume-high";
                     musicStatus.innerText = "Müzik Açık";
-                }).catch(err => console.log("Çalma hatası:", err));
+                }).catch(() => {});
             }
         });
 
@@ -743,58 +867,38 @@
         function copyDiscordName() {
             playGunSound();
             navigator.clipboard.writeText("rydeer1");
-            
             const toast = document.getElementById("toast");
             toast.className = "show";
-            setTimeout(function(){ 
-                toast.className = toast.className.replace("show", ""); 
-            }, 3000);
+            setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
         }
 
-        // DISCORD LANYARD
+        // LANYARD
         function connectLanyard() {
             const ws = new WebSocket("wss://api.lanyard.rest/socket");
-
             ws.onopen = () => {
-                ws.send(JSON.stringify({
-                    op: 2,
-                    d: { subscribe_to_id: DISCORD_ID }
-                }));
+                ws.send(JSON.stringify({ op: 2, d: { subscribe_to_id: DISCORD_ID } }));
             };
-
             ws.onmessage = (event) => {
                 const data = JSON.parse(event.data);
                 if (data.t === "INIT_STATE" || data.t === "PRESENCE_UPDATE") {
                     updateProfile(data.d);
                 }
             };
-
             ws.onclose = () => setTimeout(connectLanyard, 5000);
         }
 
         function updateProfile(userData) {
             if (!userData) return;
             const user = userData.discord_user;
-            
-            let cleanName = user.global_name || user.username;
-            cleanName = cleanName.replace(/★/g, '').trim();
+            let cleanName = (user.global_name || user.username).replace(/★/g, '').trim();
             document.getElementById("discord-username").innerText = "★" + cleanName;
             
-            const avatarUrl = user.avatar 
-                ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`
-                : "https://cdn.discordapp.com/embed/avatars/0.png";
+            const avatarUrl = user.avatar ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` : "https://cdn.discordapp.com/embed/avatars/0.png";
             document.getElementById("discord-avatar").src = avatarUrl;
+            document.getElementById("discord-status").className = "status-dot " + userData.discord_status;
 
-            const statusDot = document.getElementById("discord-status");
-            statusDot.className = "status-dot " + userData.discord_status;
-
-            const activityText = document.getElementById("activity-text");
             const customAct = userData.activities.find(a => a.type === 0);
-            if (customAct) {
-                activityText.innerText = customAct.name + " oynuyor";
-            } else {
-                activityText.innerText = "Şu an boşta";
-            }
+            document.getElementById("activity-text").innerText = customAct ? customAct.name + " oynuyor" : "Şu an boşta";
 
             if (userData.listening_to_spotify && userData.spotify) {
                 const sp = userData.spotify;
@@ -826,25 +930,12 @@
 
         function renderRecentSongs() {
             const listEl = document.getElementById("recent-songs-list");
-            if (!history || history.length === 0) {
-                listEl.innerHTML = `
-                    <li class="recent-item">
-                        <span class="title">Şarkı dinledikçe buraya eklenir</span>
-                        <span class="artist">Spotify</span>
-                    </li>`;
-                return;
-            }
-
-            listEl.innerHTML = history.map(item => `
-                <li class="recent-item">
-                    <span class="title">${item.song}</span>
-                    <span class="artist">${item.artist}</span>
-                </li>
-            `).join('');
+            if (!history || history.length === 0) return;
+            // Eğer istersen son dinlenenler HTML yapın buraya eklenebilir, şimdilik aktif tutuyoruz.
         }
 
-        // AKILLI ZİYARETÇİ SAYACI (F5 İLE ŞİŞMEZ, GERÇEKTE YENİ GİRİŞTE ARTAR)
-        let visits = parseInt(localStorage.getItem("ryder_real_visits") || "125"); // Başlangıç tabanı
+        // ZİYARETÇİ SAYACI
+        let visits = parseInt(localStorage.getItem("ryder_real_visits") || "125");
         if (!sessionStorage.getItem("has_visited_session")) {
             visits += 1;
             localStorage.setItem("ryder_real_visits", visits);
