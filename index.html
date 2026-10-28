@@ -413,50 +413,6 @@
         .spotify-info .song-name { font-size: 13px; font-weight: 600; color: #fff; max-width: 230px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .spotify-info .artist-name { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
 
-        /* --- MİNİ OYUN ALANI --- */
-        .minigame-card {
-            background: rgba(0, 240, 255, 0.05);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            border-radius: 14px;
-            padding: 14px;
-            margin-bottom: 16px;
-            text-align: center;
-        }
-        .game-screen {
-            width: 100%;
-            height: 90px;
-            background: #050508;
-            border: 1px dashed rgba(0, 240, 255, 0.4);
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-            cursor: crosshair;
-            margin-top: 8px;
-        }
-        .target {
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            background: var(--neon-red);
-            border: 2px solid #fff;
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--neon-red);
-            display: none;
-            cursor: pointer;
-        }
-        .game-btn {
-            background: rgba(0, 240, 255, 0.15);
-            border: 1px solid var(--neon-blue);
-            color: var(--neon-blue);
-            padding: 5px 12px;
-            border-radius: 6px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 11px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .game-btn:hover { background: var(--neon-blue); color: #000; }
-
         /* --- YORUM / ZİYARETÇİ DEFTERİ --- */
         .guestbook-card {
             background: rgba(255,255,255,0.02);
@@ -471,7 +427,7 @@
             gap: 8px;
             margin-top: 10px;
         }
-        .gb-input, .gb-textarea {
+        .gb-textarea {
             background: rgba(0,0,0,0.5);
             border: 1px solid rgba(255,255,255,0.1);
             padding: 8px 10px;
@@ -479,9 +435,10 @@
             color: #fff;
             font-size: 12px;
             outline: none;
+            resize: none;
+            height: 60px;
         }
-        .gb-input:focus, .gb-textarea:focus { border-color: var(--neon-red); }
-        .gb-textarea { resize: none; height: 50px; }
+        .gb-textarea:focus { border-color: var(--neon-red); }
         .gb-submit {
             background: var(--neon-red);
             color: #fff;
@@ -497,7 +454,7 @@
         .gb-submit:hover { opacity: 0.85; }
 
         .comments-list {
-            max-height: 140px;
+            max-height: 160px;
             overflow-y: auto;
             margin-top: 10px;
             display: flex;
@@ -515,7 +472,6 @@
         .comment-author { font-weight: bold; color: var(--neon-blue); margin-bottom: 2px; }
         .comment-text { color: #ccc; word-break: break-word; }
         
-        /* SİLME BUTONU (Gizli/Admin) */
         .delete-cmt {
             position: absolute;
             top: 6px;
@@ -640,18 +596,6 @@
             "Acı Tanrıdan gelir, mutsuzluk ise insan işidir."
         </div>
 
-        <!-- MİNİ OYUN KARTI -->
-        <div class="minigame-card">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span class="section-title"><i class="fa-solid fa-crosshairs"></i> HEDEFİ VUR</span>
-                <span style="font-size: 11px; font-family:'Orbitron'; color:var(--neon-blue);">Skor: <span id="score">0</span></span>
-            </div>
-            <div class="game-screen" id="game-screen">
-                <div class="target" id="target" onclick="hitTarget(event)"></div>
-            </div>
-            <button class="game-btn" id="game-start-btn" onclick="startGame()" style="margin-top: 8px;">OYUNU BAŞLAT</button>
-        </div>
-
         <!-- SPOTİFY KARTI -->
         <div class="spotify-card">
             <div class="spotify-header">
@@ -677,7 +621,6 @@
         <div class="guestbook-card">
             <div class="section-title"><i class="fa-solid fa-comments"></i> SOKAK DUVARI (YORUMLAR)</div>
             <div class="gb-form">
-                <input type="text" id=" commenter-name" class="gb-input" placeholder="Adın veya lakabın..." maxlength="20">
                 <textarea id="comment-text" class="gb-textarea" placeholder="Duvara bir söz bırak..." maxlength="120"></textarea>
                 <button class="gb-submit" onclick="addComment()">YORUMU GÖNDER</button>
             </div>
@@ -717,53 +660,12 @@
             }, 400);
         });
 
-        // --- MİNİ OYUN (HEDEF VURMA) ---
-        let score = 0;
-        let gameInterval;
-        const target = document.getElementById("target");
-        const gameScreen = document.getElementById("game-screen");
-        const scoreDisplay = document.getElementById("score");
-        const startBtn = document.getElementById("game-start-btn");
-
-        function startGame() {
-            score = 0;
-            scoreDisplay.innerText = score;
-            startBtn.style.display = "none";
-            target.style.display = "block";
-            moveTarget();
-            
-            clearInterval(gameInterval);
-            gameInterval = setInterval(() => {
-                moveTarget();
-            }, 1200);
-        }
-
-        function moveTarget() {
-            const maxX = gameScreen.clientWidth - 28;
-            const maxY = gameScreen.clientHeight - 28;
-            const randomX = Math.floor(Math.random() * maxX);
-            const randomY = Math.floor(Math.random() * maxY);
-            target.style.left = randomX + "px";
-            target.style.top = randomY + "px";
-        }
-
-        function hitTarget(event) {
-            event.stopPropagation();
-            playGunSound();
-            score += 10;
-            scoreDisplay.innerText = score;
-            moveTarget();
-        }
-
         // --- YORUM SİSTEMİ (ZİYARETÇİ DEFTERİ) ---
         let comments = JSON.parse(localStorage.getItem("ryder_comments") || "[]");
         renderComments();
 
         function addComment() {
-            const nameInput = document.getElementById("commenter-name");
             const textInput = document.getElementById("comment-text");
-            
-            const name = nameInput.value.trim() || "Gizli Sokak Sakini";
             const text = textInput.value.trim();
 
             if (!text) {
@@ -772,10 +674,10 @@
             }
 
             playGunSound();
+            const name = "Anonim Sokak Sakini";
             comments.unshift({ id: Date.now(), name, text });
             localStorage.setItem("ryder_comments", JSON.stringify(comments));
 
-            nameInput.value = "";
             textInput.value = "";
             renderComments();
         }
@@ -821,9 +723,6 @@
 
         let isPlaying = false;
         let lastPlayedSong = "";
-
-        let history = JSON.parse(localStorage.getItem("ryder_song_history") || "[]");
-        renderRecentSongs();
 
         function playGunSound() {
             gunSound.currentTime = 0;
@@ -906,32 +805,12 @@
                 document.getElementById("spotify-artist").innerText = sp.artist;
                 document.getElementById("spotify-cover").src = sp.album_art_url;
                 spotifyEq.classList.add("active");
-
-                const songKey = sp.song + " - " + sp.artist;
-                if (lastPlayedSong !== songKey) {
-                    lastPlayedSong = songKey;
-                    addToHistory(sp.song, sp.artist);
-                }
             } else {
                 document.getElementById("spotify-title").innerText = "Müzik Çalmıyor";
                 document.getElementById("spotify-artist").innerText = "Spotify Pasif";
                 document.getElementById("spotify-cover").src = "https://via.placeholder.com/60/111/fff?text=Off";
                 spotifyEq.classList.remove("active");
             }
-        }
-
-        function addToHistory(song, artist) {
-            history = history.filter(item => item.song !== song);
-            history.unshift({ song, artist });
-            if (history.length > 5) history.pop();
-            localStorage.setItem("ryder_song_history", JSON.stringify(history));
-            renderRecentSongs();
-        }
-
-        function renderRecentSongs() {
-            const listEl = document.getElementById("recent-songs-list");
-            if (!history || history.length === 0) return;
-            // Eğer istersen son dinlenenler HTML yapın buraya eklenebilir, şimdilik aktif tutuyoruz.
         }
 
         // ZİYARETÇİ SAYACI
